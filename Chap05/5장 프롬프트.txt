@@ -1,0 +1,112 @@
+5장
+
+5-2. 챗GPT에서 기획하고 이미지 만들기
+Grok에서 약 30~40초짜리 회사 소개 영상을 만들 계획이야. 6초 클립 5개를 이어 붙일 거
+야. 각 클립의 한국어 내레이션 스크립트를 장면별로 만들어주고, 5개 클립 이미지도 만들
+어줘.
+[회사 정보]
+- 회사명: 한국기업
+- 업종: (예: IT 솔루션 / 제조업 / 금융 서비스)
+- 규모: (예: 직원 50명 / 중견기업)
+- 핵심 가치: (예: 혁신, 신뢰, 빠른 성장 — 2~3개)
+- 타깃 시청자: 채용 설명회 참석 지원자
+[원하는 톤]
+- 너무 딱딱하지 않게, 지원자가 “이 회사에서 일해보고 싶다”는 느낌이 들도록
+- 각 클립은 6초 분량(한국어로 35~40자 내외)
+- 첫 클립은 인사말, 마지막 클립은 채용 페이지 안내로 마무리.
+[기타사항]
+- 정장 차림의 한국 여성 아나운서가 서서 소개 
+- 각 클립별 이미지 생성, 자막 없음
+
+클립 1. 환영 인사
+Create a 6-second photorealistic corporate introduction video using the uploaded image.
+Scene: A modern Korean company lobby with the company name "한국기업" on the wall.
+Presenter: The Korean female announcer wearing a beige business suit stands facing the 
+camera. Maintain her exact facial appearance, hairstyle, clothing, and identity from 
+the reference image.
+Action: She smiles warmly, makes a small welcoming gesture with her right hand, and 
+speaks directly to the audience. Natural blinking, subtle facial expressions, and 
+accurate Korean lip-sync.
+Camera: Stable medium shot with a very slow cinematic push-in.
+Spoken Korean dialogue (exactly):
+"안녕하세요! 새로운 가능성과 함께 성장하는 기업, 한국기업에 오신 것을 환영합니다!"
+Audio: Clear, friendly, professional Korean female voice. Natural Korean pronunciation, 
+moderately brisk delivery. Soft corporate background music at low volume.
+Important: No subtitles, no captions, no additional text overlays, no voice-over 
+narrator. The woman herself must speak the dialogue. Preserve the background and 
+company signage. Duration exactly 6 seconds.
+
+클립 2. 회사 사업 소개
+Create a 6-second photorealistic corporate promotional video using the uploaded image.
+Scene: A bright, modern Korean office with employees working at desks and collaborating 
+in the background.
+Presenter: The same Korean female announcer in a beige business suit. Preserve her 
+exact face, hair, outfit, and voice from the previous clip.
+Action: She looks directly into the camera and explains the company's business with 
+a confident smile. She naturally gestures toward the office behind her. Background 
+employees move subtly and realistically.
+Camera: Slow, smooth cinematic push-in. Keep the presenter in focus.
+Spoken Korean dialogue (exactly):
+"한국기업은 혁신적인 IT 솔루션으로 고객의 문제를 해결하고 새로운 가치를 만듭니다!"
+Audio: The same clear, friendly Korean female voice as Clip 1. Professional, 
+enthusiastic delivery. Soft background music.
+Important: Accurate Korean lip-sync. Only the presenter speaks. No subtitles, no 
+captions, no screen text overlays, no unnatural gestures or sudden camera movements. 
+Duration exactly 6 seconds.
+
+클립 3. 핵심 가치 소개
+Create a 6-second photorealistic corporate introduction video using the uploaded image.
+Scene: A modern glass-walled meeting room with Korean employees discussing ideas and 
+presenting charts.
+Presenter: The same Korean female announcer in the same beige business suit. Maintain 
+identical face, hairstyle, clothes, and voice.
+Action: She speaks confidently to the camera with a warm, enthusiastic expression. 
+She makes small, elegant hand gestures to emphasize the company's three core values. 
+Employees in the background discuss ideas naturally.
+Camera: Stable medium shot, slight cinematic camera movement.
+Spoken Korean dialogue (exactly):
+"혁신과 신뢰, 그리고 함께하는 성장! 이 세 가지가 한국기업을 움직이는 원동력입니다!"
+Audio: Natural Korean female announcer voice, matching previous clips. Positive, 
+confident intonation and accurate Korean lip movements.
+Important: Keep the presenter visually consistent. No subtitles, no captions, no added 
+graphics, no extra dialogue, no camera cuts. Duration exactly 6 seconds.
+
+클립 4. 근무 문화와 성장
+Create a 6-second photorealistic Korean corporate recruiting video using the uploaded 
+image.
+Scene: A warm, modern collaborative office lounge. Young Korean employees are smiling, 
+sharing ideas, and working together.
+Presenter: The same Korean female announcer in the identical beige business suit. 
+Preserve facial identity, hairstyle, and voice.
+Action: She smiles naturally and speaks with sincere enthusiasm. She gently gestures 
+toward the collaborative employees behind her. Background employees interact casually 
+and realistically.
+Camera: Smooth, slow cinematic push-in, focusing on the presenter while retaining the 
+workplace atmosphere.
+Spoken Korean dialogue (exactly):
+"서로의 아이디어를 존중하고 함께 도전하는 곳! 여러분의 꿈과 성장을 응원합니다!"
+Audio: The same professional Korean female voice, warm and encouraging tone. Natural 
+Korean lip-sync. Soft uplifting corporate music.
+Important: Only the presenter speaks. No subtitles, no captions, no extra text, no 
+exaggerated movements, no changes to her identity or outfit. Duration exactly 6 
+seconds.
+
+클립 5. 채용 안내 및 마무리
+Create a 6-second photorealistic corporate recruitment closing video using the uploaded 
+image.
+Scene: A modern Korean corporate lobby. A large digital display shows the fictional 
+company "한국기업" recruitment webpage.
+Presenter: The same Korean female announcer in the identical beige suit, with 
+consistent facial appearance, hairstyle, and voice.
+Action: She faces the camera, smiles warmly, and gestures with an open hand toward the 
+recruitment webpage on the large screen. She finishes her speech with a confident, 
+welcoming smile.
+Camera: Stable cinematic medium shot with a gentle push-in. Keep both the woman and 
+recruitment screen visible.
+Spoken Korean dialogue (exactly):
+"한국기업에서 여러분의 미래를 시작하세요! 자세한 채용 정보는 홈페이지에서 확인하세요!"
+Audio: Clear Korean female announcer voice matching all previous clips. Warm, inviting 
+final delivery. Soft inspirational background music.
+Important: Accurate Korean lip-sync. Only the presenter speaks. No subtitles, no 
+captions, no additional text overlays. Preserve the recruitment webpage and existing 
+company signage. End with a natural smile. Duration exactly 6 seconds.
