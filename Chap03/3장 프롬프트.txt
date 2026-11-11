@@ -1,0 +1,218 @@
+3장 프롬프트
+
+ Step 1. 챗GPT에게 쇼츠 시나리오 부탁하기
+“남극 펭귄이 한국 인터뷰 왔다가 그냥 돌아갔다면?”
+요즘 유튜브 쇼츠에서 “귀여운 동물 인터뷰” 콘텐츠가 인기인데, 기자가 마이크를 들이대고 
+동물이 사람처럼 또랑또랑하게 대답하는 콘셉트로 만들고 싶어. “남극에서 한국에 놀러 온 
+어린 펭귄이 너무 더워서 그냥 돌아간다고 하면 어떨까?”
+쇼츠 영상 시나리오를 4컷 기준으로 작성해줘.
+
+
+챗GPT가 만들어준 시나리오
+제목: 남극 펭귄이 한국 놀러 왔다가 10분 만에 돌아간 이유
+1컷 — 한국에 도착한 아기 펭귄
+장면 한여름 서울 거리. 귀여운 어린 펭귄이 작은 여행가방을 끌고 서 있다. 기자가 마이크를 내민다.
+펭귄은 벌써 땀을 뻘뻘 흘리고 있다.
+기자 “안녕하세요! 어디서 오셨어요?”
+펭귄 “남극이요.”
+기자 “한국에는 왜 오셨어요?”
+펭귄 “여행 왔어요. 한국이 그렇게 좋다길래…”
+화면 자막:「남극에서 한국까지 놀러 온 펭귄」
+2컷 — 한국 날씨를 경험하다
+장면 강렬한 햇빛 아래 아스팔트에서 아지랑이가 피어오른다. 펭귄이 날개로 계속 부채질한다. 기자가
+다시 질문한다.
+기자 “한국에 와보니까 어때요?”
+펭귄이 잠깐 침묵하다 카메라를 바라본다.
+펭귄 “근데… 여기 원래 이렇게 더워요?”
+기자 “오늘 34도예요.”
+펭귄 눈이 커진다.
+펭귄 “…34도요?”
+화면 자막:「현재 기온 34℃」
+3컷 — 중대한 결심
+장면 펭귄이 작은 휴대폰으로 남극 날씨를 확인한다.
+화면 속 남극 기온: -28℃
+기자가 묻는다.
+기자 “앞으로 한국에서 어디 가실 예정이에요?”
+펭귄이 단호한 표정으로 대답한다.
+펭귄 “공항이요.”
+기자 “벌써요?”
+펭귄 “네.”
+잠깐 정적.
+펭귄 “여긴… 펭귄이 살 곳이 아니에요.”
+화면 자막: 「여행 시작 10분 만에 귀국 결정」
+4컷 — 남극으로 돌아가는 펭귄
+장면 공항 출국장. 펭귄이 여행가방을 끌고 황급히 걸어간다. 기자가 뒤에서 마지막으로 마이크를 내
+민다.
+기자 “한국 여행 어떠셨어요?”
+펭귄이 뒤를 돌아보며 말한다.
+펭귄 “사람들은 친절했어요.”
+잠시 멈춘 뒤,
+펭귄 “근데 날씨가 안 친절해요.”
+펭귄이 자동문 안으로 사라진다.
+마지막 자막: 「다음 여행지는 겨울에 다시 생각해보겠습니다」
+엔딩 한 줄
+기자 “펭귄 씨! 겨울에 다시 오실 거죠?”
+멀리서 펭귄 목소리 “영하 되면 연락 주세요!”
+
+
+Step 2. 같은 대화창에서 4컷 이미지 만들기
+위 시나리오를 바탕으로 4컷 이미지를 만들어줘.
+
+Step 3. 챗GPT에게 Flow용 영상 프롬프트 부탁하기
+각 컷 이미지로 Flow에서 영상을 만들려고 해. 위 시나리오와 한국어 대사를 활용해서 컷별 
+영상 프롬프트를 만들어줘.
+
+▶ 1컷 영상 프롬프트(한국 도착, 첫 인터뷰)
+Use the uploaded image as the exact first frame and preserve the same baby penguin, 
+female Korean reporter, clothing, blue suitcase, character proportions, colors, and 
+overall cinematic animation style.
+Scene:
+A cute baby penguin has just arrived in Seoul with a small blue suitcase. The Korean 
+female reporter crouches beside the penguin and gently holds a microphone toward it. 
+The penguin looks up innocently, blinks naturally, slightly tilts its head, and opens 
+its beak as if speaking clearly like a human.
+Dialogue in Korean:
+Reporter: “안녕하세요! 어디서 오셨어요?”
+Penguin: “남극이요.”
+Reporter: “한국에는 왜 오셨어요?”
+Penguin: “여행 왔어요. 한국이 그렇게 좋다길래…”
+Performance:
+The reporter speaks in a friendly, bright, curious tone.
+The penguin speaks in a cute, clear, childlike Korean voice, calm and innocent.
+Add a tiny pause before the penguin answers “남극이요.” for comedic timing.
+The penguin makes a small flipper gesture while answering.
+Camera:
+Slow cinematic push-in from a medium shot toward the penguin and reporter.
+Keep both faces clearly visible.
+Natural blinking and subtle body movement only.
+Background:
+Bright Seoul summer street, gentle pedestrian movement, slight tree movement, warm 
+sunlight.
+Audio:
+Natural Korean voices, light ambient city sound, very subtle cheerful background music.
+Important:
+No subtitles.
+No captions.
+No speech bubbles.
+No visible text.
+Do not change character identity or clothing.
+Do not add extra objects.
+
+▶ 2컷 영상 프롬프트(너무 더운 한국)
+Use the uploaded image as the exact first frame and maintain the exact same penguin, 
+reporter, suitcase, wardrobe, proportions, and visual style.
+Scene:
+The summer heat feels intense. The baby penguin is visibly overheating, fanning itself 
+quickly with one flipper, panting slightly, and sweating. Its cheeks are flushed and 
+its expression changes from curiosity to disbelief. The reporter looks concerned but 
+amused and moves the microphone closer.
+Dialogue in Korean:
+Reporter: “한국에 와보니까 어때요?”
+Penguin: “근데… 여기 원래 이렇게 더워요?”
+Reporter: “오늘 34도예요.”
+Penguin: “…34도요?”
+Performance:
+The penguin says “근데…” slowly and hesitantly, then looks around before asking the 
+question.
+When the reporter says “오늘 34도예요,” the penguin freezes for a brief moment.
+After a short pause, the penguin repeats “34도요?” with wide eyes and a shocked tone.
+This pause is important for humor.
+Camera:
+Start with a medium shot.
+Slowly move closer to the penguin during the dialogue.
+End on a close-up of the penguin's shocked face.
+Background:
+Strong summer sun, slight heat shimmer above the pavement, distant pedestrians moving 
+naturally.
+Audio:
+Natural Korean dialogue, soft city ambience, subtle heat-wave atmosphere, light comedic 
+music cue when the penguin reacts.
+Important:
+No subtitles.
+No captions.
+No text.
+No speech bubbles.
+Do not exaggerate facial distortion.
+Keep the penguin cute and consistent.
+
+▶ 3컷 영상 프롬프트(공항 가기로 결심)
+Use the uploaded image as the exact first frame and preserve the same baby penguin, 
+Korean reporter, blue suitcase, backpack, clothing, and visual style.
+Scene:
+The penguin looks down at the smartphone in its flipper, sees a simple cold-weather 
+snowflake icon, pauses, then slowly raises its eyes with a very serious and determined 
+expression. It turns its body, firmly grabs the blue suitcase handle, and prepares to 
+leave. The reporter becomes surprised and follows slightly with the microphone.
+Dialogue in Korean:
+Reporter: “앞으로 한국에서 어디 가실 예정이에요?”
+Penguin: “공항이요.”
+Reporter: “벌써요?”
+Penguin: “네.”
+short pause
+Penguin: “여긴… 펭귄이 살 곳이 아니에요.”
+Performance:
+The reporter asks casually at first.
+The penguin answers “공항이요.” immediately, in a completely serious tone.
+Insert a short comedic silence after “공항이요.”
+The reporter reacts with visible surprise.
+The penguin says the final line slowly and firmly, as if making a major life decision.
+Camera:
+Begin with a close shot of the smartphone and penguin face.
+Tilt slightly upward to the penguin’s determined expression.
+Then track sideways as the penguin turns and starts pulling the suitcase away.
+Movement:
+The penguin takes short, determined steps.
+The reporter follows one or two steps, keeping the microphone extended.
+Audio:
+Natural Korean voices, very light comedic music, brief silence after “공항이요” for 
+punchline timing.
+Important:
+No subtitles.
+No captions.
+No readable text.
+No speech bubbles.
+Keep character consistency.
+Do not change the suitcase or outfit.
+
+▶ 4컷 영상 프롬프트(공항에서 바로 귀국)
+Use the uploaded airport image as the exact first frame and preserve the exact same 
+penguin, Korean female reporter, blue suitcase, backpack, character proportions, 
+wardrobe, and cinematic animation style.
+Scene:
+The penguin walks quickly through the airport departure hall while pulling the blue 
+suitcase. The reporter follows behind, slightly out of breath, still holding the 
+microphone toward the penguin. The penguin keeps moving confidently, then briefly slows 
+down and turns its head back toward the reporter for one final answer.
+Dialogue in Korean:
+Reporter: “한국 여행 어떠셨어요?”
+Penguin: “사람들은 친절했어요.”
+short pause
+Penguin: “근데 날씨가 안 친절해요.”
+Reporter: “겨울에 다시 오실 거죠?”
+Penguin: “영하 되면 연락 주세요!”
+Performance:
+The penguin says “사람들은 친절했어요.” warmly.
+Then insert a clear short pause.
+For “근데 날씨가 안 친절해요,” the penguin delivers the line with a cute but completely 
+serious expression.
+The reporter laughs slightly in disbelief.
+At the final line, the penguin looks back one last time, gives a tiny cheerful flipper 
+wave, then continues walking away.
+Camera:
+Smooth backward tracking shot in front of the penguin as it walks.
+When the penguin turns back, shift to a slight side angle.
+End with the penguin continuing toward the departure area while the reporter remains 
+behind.
+Background:
+Modern airport terminal, moving travelers, airplane visible outside the large glass 
+window, realistic reflections on the polished floor.
+Audio:
+Clear Korean dialogue, soft airport ambience, subtle comedic ending music.
+Important:
+No subtitles.
+No captions.
+No visible text.
+No speech bubbles.
+Do not alter character appearance.
+Do not add extra characters close to the main subjects.
+
