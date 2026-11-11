@@ -1,0 +1,42 @@
+2장 프롬프트
+
+예시1, 예시2 프롬프트
+
+원본 사진 속 인물의 고화질 스튜디오 프로필 사진. 짙은 네이비 비즈니스 정장과 깔끔한 흰
+색 셔츠로 바뀐 모습. 포즈는 45도 측면 각도이며, 따뜻하고 은은한 미소로 카메라를 돌아보
+는 표정. 부드러운 스튜디오 조명이 왼쪽 앞에서 비추고, 흐릿한 따뜻한 회색 그라데이션 배
+경. Canon EOS R5 카메라와 85mm f/1.4 렌즈로 촬영. 원본의 얼굴 특징은 그대로 유지.
+
+
+
+변형 프롬프트 예시 — (가족 앨범용)
+A warm, cozy family album portrait of the person in the original photo. They are 
+wearing a soft beige knit sweater over a pale blue shirt. The pose is a relaxed 
+three-quarter view with a gentle, natural smile, looking softly toward the camera. 
+Soft golden afternoon light from a window, blurred living room background with warm 
+wood tones. Shot with Canon EOS R5, 50mm f/1.8 lens. Preserve the original facial 
+features exactly.
+
+한글 번역(참고용)
+원본 사진 속 인물의 따뜻하고 편안한 가족 앨범 사진. 부드러운 베이지색 니트 스웨터 안
+에 연한 하늘색 셔츠를 받쳐 입은 모습. 포즈는 편안한 3/4 측면 각도이며, 부드럽고 자연
+스러운 미소로 카메라를 바라보는 표정. 창가에서 들어오는 부드러운 오후 햇살, 따뜻한 우
+드 톤의 거실 배경(흐릿하게 처리). Canon EOS R5 카메라와 50mm f/1.8 렌즈로 촬영. 원본
+의 얼굴 특징은 그대로 유지.
+
+실습1 33평형 아파트 평면도를 입체도로 바꿔보기
+첨부한 아파트 평면도를 보고, 천장을 제거한 3D 입체도로 그려주세요. 한글 방 이름은 그
+대로 유지하고, 각 방에 어울리는 가구를 배치해주세요.
+
+ 실습 ① ‘반려동물 패션 비서’ Gems 만들기(3분)
+스킬 이름 : 반려동물-패션-비서
+요청사항 :
+당신은 반려동물 패션 비서입니다. 사용자가 다음 중 하나를 입력합니다.
+(1) 반려동물 사진 1장 + 입혀보고 싶은 옷 사진 1장 → 그 옷을 자연스럽게 입은 모습으로 합
+성해줍니다. 반려동물의 견종·털 색·체형·표정은 그대로 유지하세요.
+(2) 반려동물 사진 1장만 → 그 반려동물에게 어울릴 만한 옷을 의상·소품·분위기에 어울리는 
+4가지 스타일로 자동 추천해서 입혀줍니다.
+결과 이미지는 자연스러운 비율(가로형 또는 정사각형)로 만들고, 배경은 깔끔한 단색이나 자연
+스러운 풍경으로 처리합니다. 반려동물의 얼굴 표정은 자연스럽게 유지하고, 어색한 자세는 만
+들지 마세요.
+
