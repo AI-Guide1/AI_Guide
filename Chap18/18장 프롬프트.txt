@@ -1,0 +1,165 @@
+18장
+
+18-3. 실습 1 PDF에서 단가표 추출하기(클로드 활용)
+
+Step 1. 코드 요청하기
+프롬프트
+파이썬 코드를 만들어줘. 나는 코딩을 모르니까 Google Colab에 그대로 붙여넣어 실행할 수 
+있는 형태로 만들어줘.
+[입력]
+- /content/단가표.pdf 파일이 있다(6페이지 분량).
+- 각 페이지에 품목코드·품목명·규격·단가(원) 컬럼이 있는 표가 들어 있다.
+[작업]
+- 모든 페이지에서 표를 찾아 하나로 합친다.
+- 첫 번째 행을 컬럼명으로 사용한다.
+- 빈 행과 단가의 쉼표를 정리해 숫자로 변환한다.
+[출력]
+- 정리된 결과를 ‘/content/추출_단가표.xlsx’로 저장한다.
+- 각 페이지에서 몇 행을 추출했는지 진행 상황을 출력한다.
+설명을 한국어 주석(#)으로 코드 안에 넣어줘.
+
+
+ Step 4. 코드 붙여넣고 실행하기
+# 1. 필요한 라이브러리 설치 (Colab에서 처음 한 번만)
+!pip install pdfplumber openpyxl -q
+# 2. 라이브러리 불러오기
+import pdfplumber
+import pandas as pd
+# 3. PDF 파일 경로 지정
+pdf_path = ‘/content/단가표.pdf’
+# 4. 모든 페이지에서 표를 찾아 리스트에 담기
+all_tables = []
+with pdfplumber.open(pdf_path) as pdf:
+ for page_num, page in enumerate(pdf.pages, start=1):
+ tables = page.extract_tables()
+ for table in tables:
+ # 첫 번째 행을 컬럼명으로 사용
+ df = pd.DataFrame(table[1:], columns=table[0])
+ all_tables.append(df)
+ print(f”페이지 {page_num}: 표 1개 추출 ({len(df)}행)”)
+# 5. 모든 표를 세로로 이어 붙이기
+final_df = pd.concat(all_tables, ignore_index=True)
+# 6. 빈 행 제거 및 단가 컬럼 숫자 변환
+final_df = final_df.dropna(how=’all’)
+final_df[‘단가(원)’] = final_df[‘단가(원)’].str.replace(‘,’, ‘’).astype(int)
+# 7. 엑셀로 저장
+final_df.to_excel(‘/content/추출_단가표.xlsx’, index=False)
+print(f”\n✅ 총 {len(final_df)}개 품목 추출 완료!”)
+
+
+18-4. 실습 2 관심 종목·코인 자동 시세 리포트 만들기
+ Step 1. 클로드에게 코드 요청하기
+프롬프트 — 시세 리포트 + 알림 기능
+Google Colab에서 실행할 파이썬 코드를 만들어줘. 코딩을 모르니까 주석으로 자세히 설명
+해줘.
+[목표]
+관심 종목과 암호화폐 시세를 한 번에 조회해서 표로 보여주는 ‘나만의 아침 시세 리포트’
+를 만들고 싶어.
+[관심 종목]
+- 국내 주식: 삼성전자(005930), SK하이닉스(000660), 카카오(035720)
+- 미국 주식: 애플(AAPL), 엔비디아(NVDA), 테슬라(TSLA)
+- 암호화폐: 비트코인(BTC), 이더리움(ETH), 리플(XRP)
+[작업]
+1. yfinance 라이브러리로 국내·미국 주식 시세를 가져온다.
+2. 업비트 공개 API로 암호화폐 시세를 가져온다 (KRW 마켓 기준).
+3. 각 종목의 현재가, 전일 대비 등락률(%), 등락 방향(▲/▼)을 계산한다.
+4. 결과를 pandas 데이터프레임으로 표 형태로 출력한다.
+5. 비트코인 최근 3개월 차트를 보여준다.
+[알림 기능]
+- 비트코인 가격이 9,500만원을 넘으면 “⚠ BTC 알림” 메시지 출력
+- 삼성전자 주가가 7만원 아래면 “⚠ 삼성전자 알림” 메시지 출력
+[출력]
+- 콘솔에 표로 출력
+- ‘오늘의시세_(오늘날짜).csv’ 파일로도 저장
+
+Step 2. 클로드가 만들어주는 코드 살펴보기
+# 1. 필요한 라이브러리 설치
+!pip install yfinance -q
+# 2. 라이브러리 불러오기
+import yfinance as yf
+import pandas as pd
+import requests
+import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
+# 3. 관심 종목 정의 (비트코인 티커 확인: Yahoo Finance 기준 BTC-KRW)
+korean_stocks = {‘삼성전자’: ‘005930.KS’, ‘SK하이닉스’: ‘000660.KS’, ‘카카오’: ‘035720.
+KS’}
+us_stocks = {‘애플’: ‘AAPL’, ‘엔비디아’: ‘NVDA’, ‘테슬라’: ‘TSLA’}
+cryptos = {‘비트코인’: ‘KRW-BTC’, ‘이더리움’: ‘KRW-ETH’, ‘리플’: ‘KRW-XRP’}
+# 4. 결과를 담을 리스트
+results = []
+# 5. 주식 시세 가져오기
+def get_stock_info(name, ticker, market):
+ try:
+ stock = yf.Ticker(ticker)
+ hist = stock.history(period=’2d’)
+ if len(hist) < 2: return None
+ prev_close = hist[‘Close’].iloc[-2]
+ current = hist[‘Close’].iloc[-1]
+ change_pct = (current - prev_close) / prev_close * 100
+ arrow = ‘▲’ if change_pct >= 0 else ‘▼’
+ return {
+ ‘구분’: market, ‘종목’: name, ‘현재가’: round(current, 2),
+ ‘전일대비(%)’: round(change_pct, 2), ‘방향’: arrow,
+ }
+ except Exception as e:
+ print(f”{name} 조회 실패: {e}”)
+ return None
+for name, ticker in korean_stocks.items():
+ info = get_stock_info(name, ticker, ‘국내주식’)
+ if info: results.append(info)
+for name, ticker in us_stocks.items():
+ info = get_stock_info(name, ticker, ‘미국주식’)
+ if info: results.append(info)
+# 6. 암호화폐 시세 가져오기 (업비트 API)
+upbit_url = ‘https://api.upbit.com/v1/ticker’
+markets = ‘,’.join(cryptos.values())
+response = requests.get(upbit_url, params={‘markets’: markets})
+crypto_data = response.json()
+for item in crypto_data:
+ name = [k for k, v in cryptos.items() if v == item[‘market’]][0]
+ change_pct = item[‘signed_change_rate’] * 100
+ arrow = ‘▲’ if change_pct >= 0 else ‘▼’
+ results.append({
+ ‘구분’: ‘암호화폐’, ‘종목’: name, ‘현재가’: int(item[‘trade_price’]),
+ ‘전일대비(%)’: round(change_pct, 2), ‘방향’: arrow,
+ })
+# 7. 데이터프레임 출력
+df = pd.DataFrame(results)
+print(“=” * 50)
+print(f”📊 오늘의 시세 리포트 ({datetime.now().strftime(‘%Y-%m-%d %H:%M’)})”)
+일과일상-AI-body-5차.indd 327 2026-11-09 오후 2:19:22328 PART 06 나만의 프로그램 만들기
+print(“=” * 50)
+print(df.to_string(index=False))
+# 8. [신규 추가] 비트코인 최근 3개월 차트 시각화
+print(“\n📈 비트코인(BTC-KRW) 최근 3개월 추이”)
+try:
+ # 차트용 데이터는 yfinance에서 가져오는 것이 안정적입니다 (BTC-KRW)
+ btc_chart_data = yf.download(‘BTC-KRW’, period=’3mo’, interval=’1d’, 
+progress=False)
+ 
+ plt.figure(figsize=(10, 5))
+ plt.plot(btc_chart_data.index, btc_chart_data[‘Close’], color=’#f7931a’, 
+linewidth=2)
+ plt.title(‘Bitcoin (BTC-KRW) - Last 3 Months’, fontsize=14)
+ plt.xlabel(‘Date’)
+ plt.ylabel(‘Price (KRW)’)
+ plt.grid(True, linestyle=’--’, alpha=0.7)
+ plt.tight_layout()
+ plt.show()
+except Exception as e:
+ print(f”차트 생성 실패: {e}”)
+# 9. 알림 체크
+print(“\n🔔 알림”)
+btc_price = next((r[‘현재가’] for r in results if r[‘종목’] == ‘비트코인’), 0)
+if btc_price > 95_000_000:
+ print(f”⚠ BTC 알림: 비트코인이 {btc_price:,}원으로 9,500만원을 넘었습니다!”)
+samsung_price = next((r[‘현재가’] for r in results if r[‘종목’] == ‘삼성전자’), 0)
+if 0 < samsung_price < 70_000:
+ print(f”⚠ 삼성전자 알림: 현재 {samsung_price:,.0f}원으로 7만원 아래입니다!”)
+# 10. CSV 저장
+today = datetime.now().strftime(‘%Y-%m-%d’)
+csv_path = f’/content/오늘의시세_{today}.csv’
+df.to_csv(csv_path, index=False, encoding=’utf-8-sig’)
+print(f”\n💾 저장 완료: {csv_path}”)
+
