@@ -1,0 +1,156 @@
+22장
+
+① 클로드에게 데이터 수집 코드 만들기
+프롬프트 — 데이터 수집 스크립트 만들기
+업비트의 메이저 5종목(KRW-BTC, KRW-ETH, KRW-XRP, KRW-SOL, KRW-ADA)에 대해
+지난 1년치(365일) 캔들 데이터를 다운로드하는 파이썬 스크립트를 만들어줘.
+요구사항:
+1. pyupbit 라이브러리 사용(API 키 없이 시세만 조회)
+2. 시간프레임 3개: 60분(minute60), 240분(minute240), 일봉(day)
+3. 종목별·시간프레임별로 별도 CSV 파일로 저장
+ - 파일명 예시: data/KRW-BTC_minute60.csv
+4. 칼럼: 날짜, 시가, 고가, 저가, 종가, 거래량
+5. 한 번에 200개 이상 가져올 때는 자동으로 페이징
+6. 다운로드 진행 상황을 print로 표시
+7. 코드 한 줄 한 줄에 한국어 주석 달아줘 — 비개발자가 읽을 거야
+VS Code에서 바로 실행할 수 있게 만들어줘.
+
+② AI(클로드)가 만들어준 코드
+
+# pyupbit 라이브러리 — 업비트 데이터를 받아오는 무료 도구
+import pyupbit
+import pandas as pd
+import os
+import time
+# 데이터 저장 폴더 만들기(없으면 자동 생성)
+os.makedirs(“data”, exist_ok=True)
+# 다운로드할 종목 5개와 시간프레임 3개
+tickers = [“KRW-BTC”, “KRW-ETH”, “KRW-XRP”, “KRW-SOL”, “KRW-ADA”]
+intervals = {
+ “minute60”: 24 * 365, # 60분봉 1년치 = 8,760개
+ “minute240”: 6 * 365, # 240분봉 1년치 = 2,190개
+ “day”: 365, # 일봉 1년치 = 365개
+}
+# 종목 × 시간프레임 = 15가지 조합을 차례로 다운로드
+for ticker in tickers:
+ for interval, count in intervals.items():
+ print(f”📥 {ticker} {interval} 다운로드 중...”)
+ df = pyupbit.get_ohlcv(ticker, interval=interval, count=count)
+ # 저장 경로: data/KRW-BTC_minute60.csv 형태로
+ path = f”data/{ticker}_{interval}.csv”
+ df.to_csv(path, encoding=”utf-8-sig”)
+ print(f” ✓ 저장 완료: {path} ({len(df)}행)”)
+ time.sleep(0.5) # 업비트 서버 부담 줄이기 위한 0.5초 대기
+print(“\n🎉 모든 데이터 다운로드 완료!”)
+
+22-2. AI에게 전략을 묻고, 백테스팅으로 검증한다
+프롬프트 — 백테스팅 엔진 만들기
+data 폴더에 있는 15개 CSV 파일(5종목 × 3시간프레임)을 입력으로 받아,
+다음 5가지 매매 전략을 모두 백테스팅하는 파이썬 스크립트를 만들어줘.
+전략 5가지:
+1. 이동평균 골든크로스 (단기 5, 장기 20)
+2. RSI 과매도 반등 (RSI 30 매수, 70 매도)
+3. 볼린저밴드 돌파 (20일 기준, 표준편차 2배)
+4. 변동성 돌파 (래리 윌리엄스, K=0.5)
+5. 그냥 1년 보유 (BUY & HOLD, 비교 기준선)
+각 전략의 결과로 다음 7가지 지표를 계산해줘:
+ 누적 수익률(%)
+- 연환산 수익률(%)
+- 최대 낙폭(MDD, %)
+- 승률(%)
+- 거래 횟수
+- 평균 보유 기간
+- 샤프 지수
+가정:
+- 초기 자금 1,000만 원
+- 매매 수수료 0.05% (업비트 기준)
+- 슬리피지 0.1% (실제 체결가가 살짝 불리한 정도)
+결과는 backtest_results.csv로 저장하고,
+종목별로 가장 수익률 높은 전략 1개씩(총 5개)을 추천 표로 따로 만들어줘.
+코드는 한국어 주석 포함해서 비개발자가 읽을 수 있게.
+
+④ 사용자가 직접 조정하는 단계
+프롬프트 — 전략 파라미터 튜닝 요청
+KRW-BTC의 볼린저밴드 돌파 전략(추천)이 지금 +34.2%인데,
+이 전략에서 변경할 수 있는 파라미터들을 알려주고,
+각 파라미터를 살짝씩 바꾸면서 어떤 게 가장 안정적인지 비교 표를 만들어줘.
+조건:
+- 너무 거래가 자주 일어나는 건 싫어 (한 달 1회 이내)
+- 최대 낙폭(MDD)은 15% 이내로 제한하고 싶어
+- 다른 종목에도 같은 파라미터가 통하는지도 같이 봐줘
+
+22-3. 시뮬레이션 매매 — 실제 돈 없이 돌려본다
+① 클로드에게 시뮬레이터 요청하기
+프롬프트 — 가상 잔고 자동매매 시뮬레이터 만들기
+실제 돈을 절대 쓰지 않고, 내 컴퓨터에서만 돌아가는 자동매매 시뮬레이터를 만들어줘.
+[시스템 구조]
+- 가상 잔고: 시작 자금 1,000만원 (KRW)
+- 실시간 시세는 pyupbit로 매분 조회 (조회만 — 주문은 절대 X)
+- 매수·매도는 모두 내부 잔고에서만 처리
+- 모든 거래 기록은 trades.csv에 저장
+[매매 종목 5개 + 시간프레임 (22-2 추천 결과 적용)]
+- KRW-BTC: KRW-BTC: 240분봉 / 볼린저밴드 (30봉, 2.5배, 중앙선 회귀 매도)
+- KRW-ETH: 일봉 / 골든크로스 (5/20)
+- KRW-XRP: 60분봉 / RSI 반등 (30/70)
+- KRW-SOL: 일봉 / 볼린저밴드 (20일, 2.0배)
+- KRW-ADA: 240분봉 / 골든크로스 (5/20)
+[안전 장치]
+- 종목당 최대 비중 25% (한 종목에 몰빵 방지)
+- 손절 -7%, 익절 +15% 자동 발동
+- 1회 매매 단위는 종목당 최대 비중(25%) 이내
+- 모든 주문에 “(시뮬레이션)” 라벨 명시
+[모니터링]
+- 매분 현재 잔고와 보유 종목 현황 콘솔 출력
+- 매수·매도 발생 시 별도 로그
+- Ctrl+C로 안전하게 종료할 수 있게
+코드는 한 파일(simulator.py)로 만들고,
+중요 부분에 한국어 주석 달아줘.
+
+② 클로드가 만든 시뮬레이터의 핵심 구조
+📄 simulator.py — 가상 잔고 핵심 부분 발췌
+
+# ──────────────────────────────────
+# 가상 잔고 클래스 — 실제 업비트 대신 내 컴퓨터에서 작동
+# ──────────────────────────────────
+class VirtualUpbit:
+ def __init__(self, seed=10_000_000):
+ self.cash = seed # 가상 KRW 잔고
+ self.holdings = {} # 보유 코인: {ticker: 수량}
+ self.trade_log = [] # 모든 거래 기록
+ def buy(self, ticker, krw_amount, current_price):
+ # 수수료 0.05% + 슬리피지 0.1%
+ actual_price = current_price * 1.001
+ fee = krw_amount * 0.0005
+ qty = (krw_amount - fee) / actual_price
+ if self.cash >= krw_amount:
+ self.cash -= krw_amount
+ self.holdings[ticker] = self.holdings.get(ticker, 0) + qty
+ self._log(“BUY”, ticker, qty, actual_price)
+ print(f”□ [시뮬레이션] {ticker} 매수 — {krw_amount:,.0f}원”)
+ def sell(self, ticker, current_price):
+ qty = self.holdings.get(ticker, 0)
+ if qty > 0:
+ actual_price = current_price * 0.999
+ krw = qty * actual_price * 0.9995 # 수수료 차감
+ self.cash += krw
+ self.holdings[ticker] = 0
+ self._log(“SELL”, ticker, qty, actual_price)
+ print(f”🔴 [시뮬레이션] {ticker} 매도 — {krw:,.0f}원”)
+
+22-4. 웹 대시보드 — 한 화면에서 모든 매매를 본다
+프롬프트 — 자동매매 대시보드 만들기
+simulator.py가 만든 trades.csv 파일을 입력으로 받는 웹 대시보드를 만들어줘.
+상단에 4개 핵심 지표 카드:
+- 가상 자산 총액 (현재 잔고 + 보유 코인 평가액)
+- 누적 수익률 (%)
+- 진행 중 매매 (매수 후 미매도 종목)
+- 승률
+중앙에는 다음 4개 차트:
+1. 자산 추이 라인차트 (시작부터 현재까지 매분 단위)
+2. 종목별 비중 도넛차트
+3. 최근 30개 거래 내역 표 (시간/종목/매수매도/체결가/손익)
+4. 종목별 누적 수익률 막대그래프
+하단에는 실시간 매매 로그 (콘솔처럼 보이게 검은 배경)
+기술 스택: Python Flask + Chart.js (CDN) — VS Code에서 바로 실행 가능
+30초마다 자동 새로고침되게 만들어줘.
+
