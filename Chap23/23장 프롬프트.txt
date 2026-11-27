@@ -1,0 +1,58 @@
+23장
+
+
+Step 4. 파이썬과 라이브러리 설치 — 클로드한테 시키기
+클로드 프롬프트
+우분투 24.04가 깔린 구글 클라우드 VM에서
+파이썬3, pip, 가상환경(venv), ccxt 라이브러리를
+한 번에 설치하는 명령어들을 순서대로 알려줘.
+각 명령어가 무엇을 하는지 한 줄 설명도 붙여주고,
+중간에 [Y/n] 물음이 나오면 무엇을 입력해야 하는지도 알려줘.
+
+Step 5. 터미널에서 입력
+
+② 우분투 시스템 업데이트
+sudo apt update
+
+
+③ 파이썬 + 가상환경 도구 설치
+sudo apt install -y python3 python3-pip python3-venv
+
+④ 작업 폴더 만들고 가상환경 만들기
+mkdir ~/cryptotrade
+cd ~/cryptotrade
+python3 -m venv cryptoenv
+
+⑤ 가상환경 활성화(가장 헷갈리는 지점)
+source cryptoenv/bin/activate
+cd ~/cryptotrade
+source cryptoenv/bin/activate
+
+⑥ ccxt 등 라이브러리 설치
+pip install ccxt requests
+pip list
+
+
+23-3. 내 PC의 파이썬 파일을 서버로 올리기
+② 파일을 작업 폴더로 옮기기
+ls ~/ 
+mv ~/auto_trade.py ~/cryptotrade/ 
+cd ~/cryptotrade && ls
+
+23-4. 봇을 자동으로 깨우기(Crontab)
+크론탭 문법, 외울 필요 없습니다
+프롬프트
+리눅스 크론탭에 다음 작업을 등록하고 싶어.
+작업 내용:
+- 30분마다 자동 실행
+- 실행 파일: /home/사용자명/cryptotrade/auto_trade.py
+- 가상환경: /home/사용자명/cryptotrade/cryptoenv 사용
+- 실행 결과는 /home/사용자명/cryptotrade/run.log 에 누적
+크론탭에 추가할 한 줄과,
+그걸 어떻게 등록하는지 단계별로 알려줘.
+
+*/30 * * * * /home/사용자명/cryptotrade/cryptoenv/bin/python /home/사용자명/cryptotrade/
+auto_trade.py >> /home/사용자명/cryptotrade/run.log 2>&1 
+
+잘 등록됐는지 확인
+crontab -l
